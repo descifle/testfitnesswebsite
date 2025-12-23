@@ -1,0 +1,235 @@
+$introText: 1.067rem; $text:.940rem; $headerText: 1.070rem; $contentSpace: 3rem; $contentSpaceInline: 1.5rem; $contentSpaceInput: .3rem;
+$mobilePadding: 1rem; $windowPadding: 24rem; $modalFormPadding: 4rem; $navHeight: 4.5rem; $extendedNavHeight: 15rem;
+$borderRadiusSmall: 5px; $borderRadiusMedium: 1rem;
+
+$menuButtonBarWidth: 2rem; $menuButtonBarHeight: .3rem; $menuButtonTranslateStart: .6rem; $menuButtonTranslateEnd: 1.4rem;
+
+$bgColor: #dddddd; $textColor: #333447; 
+$mainColor: #2c2b2a; $secondColor: #066226; $lightSecondColor: #0c8436;
+$red: #D50057; $error: #c32958; $errorBackground: #f3d4dd; $grey: #d7d9db; $modalBackground: #70707E; $closeButton: #333448;
+
+.main-nav {
+    width: 100%;
+    color: white;
+    padding: $mobilePadding;
+
+    .top-section {
+        display: flex;
+        align-items:center;
+        color: black;
+
+        .logo-container {
+            img {
+                height: 4rem;
+                width: auto;
+            }
+        }
+
+        .cta {
+            text-align: right;
+
+            button {
+                margin-left: auto;
+            }
+
+            div {
+                margin-bottom: $contentSpaceInput;
+            }
+        }
+    }
+
+    .stars {
+        display: flex;
+
+        .stars-text {
+            width: 100%;
+        }
+    }
+
+    .mobile-menu {
+        height: 0;
+        overflow: hidden;
+        transition: height .8s ease-in-out;
+    }
+
+    .mobile-menu.mobile-toggle {
+        height: 12rem;
+    }
+
+    .desktop-menu {
+        display: none;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .link-item {
+        height: unset;
+        width: 100%;
+        padding: $contentSpaceInput;
+        border-bottom: solid 1px black;
+        color: $mainColor;
+
+        &:hover {
+            color: black;
+        }
+
+        a {
+            font-weight: bold;
+        }
+    }
+
+    a {
+        color: inherit;
+    }
+}
+
+.cta-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    border: none;
+    padding: $contentSpaceInline;
+    color: white;
+    background-color: $secondColor;
+    font-weight: 600;
+    font-size: .8rem;
+    text-decoration: none;
+    transition: background-color .1s ease-in-out;
+
+    &:hover {
+        background-color: $lightSecondColor;
+    }
+}
+
+.mobile-menu-button {
+    position: relative;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: $contentSpaceInline;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+}
+
+.menu-btn_burger {
+    width: $menuButtonBarWidth;
+    height: $menuButtonBarHeight;
+    background-color: black;
+    border-radius: $borderRadiusSmall;
+    // box-shadow: 0 2px 5px brown;
+    transition: all .5s ease-in-out;
+
+    &::before,&::after {
+        content: '';
+        position: absolute;
+        width: $menuButtonBarWidth;
+        height: $menuButtonBarHeight;
+        background: black;
+        border-radius: $borderRadiusSmall;
+        transition: all .5s ease-in-out;
+    }
+
+    &::before {
+        transform: translateY(-$menuButtonTranslateStart)
+    }
+    &::after {
+        transform: translateY($menuButtonTranslateStart)
+    }
+}
+
+.mobile-menu-button.open .menu-btn_burger {
+    transform: translateX(-2rem);
+    background: transparent;
+    box-shadow: none;
+
+    &::before {
+        transform: rotate(45deg) translate($menuButtonTranslateEnd, -$menuButtonTranslateEnd);
+    }
+    &::after {
+        transform: rotate(-45deg) translate($menuButtonTranslateEnd, $menuButtonTranslateEnd);
+    }
+}
+
+@media only screen and (min-width: 80rem) {
+    .main-nav {
+        display: block;
+        justify-content: center;
+        max-width: 160rem;
+        padding: $mobilePadding 15% 0 15%;
+
+        .top-section {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            > div {
+                width: 33%;
+            }
+
+            .logo-container {
+                display: flex;
+            }
+        }
+
+        .link-item {
+            height: 100%;
+            width: 6rem;
+            color: white;
+        }
+
+        .desktop-menu {
+            display: flex;
+            justify-content: center;
+            background-color: $mainColor;
+            color: white;
+            padding: $contentSpaceInput * 2;
+            margin-left: -20vw;
+            margin-right: -20vw;
+
+            .lavalamp {
+                position: relative;
+                display: flex;
+                justify-content: center;
+
+                li {
+                    z-index: 99;
+                    padding: $contentSpaceInput $contentSpaceInput * 2;
+                    border: none;
+    
+                    &:hover {
+                        border-radius: 10rem;
+                    }
+    
+                    .active {
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        .lamp-animation {
+            z-index: 2;
+            position: absolute;
+            height: 100%;
+            background-color: $secondColor;
+            transition: all linear .2s;
+        }
+
+        .lamp-animation-hover {
+            z-index: 1;
+            position: absolute;
+            height: 100%;
+            background-color: $grey;
+            transition: all ease-in-out .2s;
+        }
+    }
+}

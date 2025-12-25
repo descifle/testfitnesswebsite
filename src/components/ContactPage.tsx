@@ -1,10 +1,11 @@
 import { useState, createRef } from "react";
 import { onItemBlur, onItemFocus, validateEmail } from "../util/utilFunctions";
-import {  companyEmail, companyName, companyPhoneNumber } from "../util/constants";
+import {  companyEmail, companyPhoneNumber } from "../util/constants";
 // import { client } from "./client";
 // import ReCAPTCHA from "react-google-recaptcha";
 import ArrowSVG from "./svgs/ArrowSVG";
 import CircularProgress from "./CircularProgress/CircularProgress";
+import { toast, ToastContainer } from "react-toastify";
 // import axiosRetry from 'axios-retry';
 
 export default () => {
@@ -29,12 +30,12 @@ export default () => {
 
         const phoneTrimmed = phone.replace(/-|\s/, "");
 
-        const recaptchaValue = recaptchaRef.current.getValue();
-        if(!recaptchaValue) {
-            const rc = document.querySelector(".my-recaptcha") as HTMLElement;
-            rc.scrollTo({  });
-            return;
-        }
+        // const recaptchaValue = recaptchaRef.current.getValue();
+        // if(!recaptchaValue) {
+        //     const rc = document.querySelector(".my-recaptcha") as HTMLElement;
+        //     rc.scrollTo({  });
+        //     return;
+        // }
 
         if(phone.length !== 0 && phoneTrimmed.length !== 10) {
             tempErrors.phone = "Phone number is not valid";
@@ -59,8 +60,13 @@ export default () => {
         if(success) {
             setMessageSending(true);
 
-
             // handle success post
+            toast("Sending your message");
+
+            setTimeout(() => {
+                setMessageSending(false);
+                setMessageSent(true);
+            }, 1000)
         }
     }
 
@@ -139,7 +145,7 @@ export default () => {
             <h2 className="text-center">GET IN TOUCH</h2>
             </section>
             <section className="map-container">
-                <div>
+                <div style={{padding: "1rem 0"}}>
                    {contactInfo.map((item, i) => {
                         if(item.title === "Phone") return (
                         <p key={i}>
@@ -172,7 +178,7 @@ export default () => {
             </form>
 
             </section>
-        <div className="m-top-lg"></div>
+        <ToastContainer />
         </main>
     )
 }

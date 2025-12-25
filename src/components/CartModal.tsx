@@ -27,7 +27,7 @@ const CartModal: React.FC<CartModalProps> = ({ cartItems, open, handleCartOpen }
                 }
                 <button onClick={() => handleProcessOrder()}>Process Order</button>
                 <button onClick={() => handleRemoveItems()}>Clear Cart</button>
-                <ToastContainer />
+                <ToastContainer className={"d-none"} />
         </dialog>
     )
 }

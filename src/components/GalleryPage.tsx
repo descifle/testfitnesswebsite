@@ -64,6 +64,7 @@ const GalleryPage = () => {
     <main>
       <CartModal handleCartOpen={handleCartOpen} open={cartOpen} cartItems={getItem("cart")} />
       <section>
+        <button onClick={() => handleCartOpen(cartOpen)}>View Cart</button>
         <h1 className="text-center second-color">Our Offers</h1>
         <h2 className="text-center">Join Us</h2>
       </section>

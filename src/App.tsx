@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./assets/css/header.scss"
 import "./assets/css/main.scss"
+import "./assets/css/auxillary.css"
 import ErrorBoundary from "./components/ErrorBoundary"
 import RootElement from "./components/RootElement"
 import HomePage from "./components/HomePage"
